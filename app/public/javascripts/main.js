@@ -121,6 +121,9 @@ changeText(action1, "Order coagulation and platelet tests");
 var pltLevel = shapes.decision.clone();
 changeText(pltLevel, "PLT <102 k/mm^3");
 
+var tegLevel = shapes.decision.clone();
+changeText(tegLevel, "TEG MA <48mm");
+
 var links = [];
 links.push(createLink(step1, action1));
 //var link = new joint.dia.Link({
@@ -128,5 +131,5 @@ links.push(createLink(step1, action1));
 //  target: { id: action1.id }
 //});
 
-graph.addCells([step1, action1, pltLevel]);
+graph.addCells([step1, action1, pltLevel, tegLevel]);
 graph.addCells(links);
