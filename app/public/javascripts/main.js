@@ -2,8 +2,8 @@ var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({
   el: $('#myholder'),
-  width: 600,
-  height: 800,
+  width: 800,
+  height: 900,
   model: graph,
   interactive: true,
   gridSize: 1
@@ -111,23 +111,33 @@ var changeText = function(elm, text){
   });
 };
 
+var cells = [];
 
 var step1 = shapes.entrance.clone();
 changeText(step1, "Excessive microvascular bleeding in surgical field");
 //step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
 step1.set('position', { x: 200 ,y: 30 });
+cells.push(step1);
 
 var action1 = shapes.action.clone();
 changeText(action1, "Order coagulation and platelet tests");
 action1.set('position', { x: 200 ,y: 135 });
+cells.push(action1);
 
 var pltLevel = shapes.decision.clone();
 changeText(pltLevel, "PLT <102 k/mm^3");
-pltLevel.set('position', { x: 14 ,y: 240 });
+pltLevel.set('position', { x: 0 ,y: 240 });
+cells.push(pltLevel);
 
 var tegLevel = shapes.decision.clone();
 changeText(tegLevel, "TEG MA <48mm");
-tegLevel.set('position', { x:150, y: 240 });
+tegLevel.set('position', { x:125, y: 240 });
+cells.push(tegLevel);
+
+var ptLevel = shapes.decision.clone();
+changeText(ptLevel, "TEG MA <48mm");
+ptLevel.set('position', { x:125, y: 240 });
+cells.push(ptLevel);
 
 var links = [];
 links.push(createLink(step1, action1));
@@ -136,5 +146,5 @@ links.push(createLink(step1, action1));
 //  target: { id: action1.id }
 //});
 
-graph.addCells([step1, action1, pltLevel, tegLevel]);
+graph.addCells(cells);
 graph.addCells(links);
