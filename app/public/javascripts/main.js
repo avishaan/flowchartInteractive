@@ -59,6 +59,17 @@ shapes.action = new joint.shapes.basic.Rect({
   }
 });
 
+shapes.decision = new joint.shapes.basic.Path({
+  position: { x: 200, y: 130 },
+  size: { width: 100, height: 100 },
+  attrs: {
+    path: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black', d: 'M 30 0 L 60 30 30 60 0 30 z' },
+    text: {
+      text: 'my label', fill: '#D8DAF3', 'font-size': 10, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize', 'ref-y': 0.5
+    }
+  }
+});
+
 //var employee = element(erd.Entity, 100, 200, "Employee");
 //var salesman = element(erd.Entity, 100, 400, "Salesman");
 //var wage = element(erd.WeakEntity, 530, 200, "Wage");
@@ -107,6 +118,9 @@ changeText(step1, "Excessive microvascular bleeding in surgical field");
 var action1 = shapes.action.clone();
 changeText(action1, "Order coagulation and platelet tests");
 
+var pltLevel = shapes.decision.clone();
+changeText(pltLevel, "PLT <102 k/mm^3");
+
 var links = [];
 links.push(createLink(step1, action1));
 //var link = new joint.dia.Link({
@@ -114,5 +128,5 @@ links.push(createLink(step1, action1));
 //  target: { id: action1.id }
 //});
 
-graph.addCells([step1, action1]);
+graph.addCells([step1, action1, pltLevel]);
 graph.addCells(links);
