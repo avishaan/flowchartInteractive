@@ -41,9 +41,9 @@ shapes.entrance = new joint.shapes.basic.Rect({
   position: { x: 100, y: 30 },
   size: { width: 150, height: 50 },
   attrs: {
-    rect: { fill: '#2C3E50', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    rect: { fill: '#D8E0F2', rx: 5, ry: 5, 'stroke-width': 1, stroke: 'black' },
     text: {
-      text: 'my label', fill: '#3498DB', 'font-size': 11, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+      text: 'my label', fill: '#464646', 'font-size': 11, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
     }
   }
 });
@@ -52,9 +52,9 @@ shapes.treatment = new joint.shapes.basic.Rect({
   position: { x: 200, y: 130 },
   size: { width: 120, height: 50 },
   attrs: {
-    rect: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    rect: { fill: '#E3D1EA', rx: 5, ry: 5, 'stroke-width': 1, stroke: 'black' },
     text: {
-      text: 'my label', fill: '#D8DAF3', 'font-size': 12, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+      text: 'my label', fill: '#464646', 'font-size': 12, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
     }
   }
 });
@@ -63,9 +63,9 @@ shapes.action = new joint.shapes.basic.Rect({
   position: { x: 200, y: 130 },
   size: { width: 150, height: 50 },
   attrs: {
-    rect: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    rect: { fill: '#C9F0CB', rx: 5, ry: 5, 'stroke-width': 1, stroke: 'black' },
     text: {
-      text: 'my label', fill: '#D8DAF3', 'font-size': 12, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+      text: 'my label', fill: '#464646', 'font-size': 12, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
     }
   }
 });
@@ -74,9 +74,9 @@ shapes.decision = new joint.shapes.basic.Path({
   position: { x: 200, y: 130 },
   size: { width: 100, height: 100 },
   attrs: {
-    path: { fill: '#477A6F', rx: 0, ry: 0, 'stroke-width': 2, stroke: 'black', d: 'M 30 0 L 60 30 30 60 0 30 z' },
+    path: { fill: '#EEDDB0', rx: 0, ry: 0, 'stroke-width': 1, stroke: 'black', d: 'M 30 0 L 60 30 30 60 0 30 z' },
     text: {
-      text: 'my label', fill: '#D8DAF3', 'font-size': 11, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize', 'ref-y': 0.45
+      text: 'my label', fill: '#464646', 'font-size': 11, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize', 'ref-y': 0.45
     }
   }
 });
