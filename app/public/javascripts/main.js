@@ -23,6 +23,14 @@ var link = function(elm1, elm2) {
   return myLink;
 };
 
+var createLink = function(fromElm, toElm) {
+  var link = new joint.dia.Link({
+    source: { id: fromElm.id },
+    target: { id: toElm.id }
+  });
+  return link;
+};
+
 var shapes = {};
 
 shapes.entrance = new joint.shapes.basic.Rect({
@@ -87,4 +95,15 @@ var step1 = shapes.entrance.clone();
 changeText(step1, "Excessive microvascular bleeding in surgical field");
 //step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
 
-graph.addCells([step1, shapes.action]);
+var action1 = shapes.action.clone();
+changeText(action1, "Order coagulation and platelet tests");
+
+var links = [];
+links.push(createLink(step1, action1));
+//var link = new joint.dia.Link({
+//  source: { id: step1.id },
+//  target: { id: action1.id }
+//});
+
+graph.addCells([step1, action1]);
+graph.addCells(links);
