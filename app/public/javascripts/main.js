@@ -48,6 +48,17 @@ shapes.entrance = new joint.shapes.basic.Rect({
   }
 });
 
+shapes.treatment = new joint.shapes.basic.Rect({
+  position: { x: 200, y: 130 },
+  size: { width: 120, height: 50 },
+  attrs: {
+    rect: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    text: {
+      text: 'my label', fill: '#D8DAF3', 'font-size': 10, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+    }
+  }
+});
+
 shapes.action = new joint.shapes.basic.Rect({
   position: { x: 200, y: 130 },
   size: { width: 150, height: 50 },
@@ -159,15 +170,30 @@ changeText(normalLevel, "All normal");
 normalLevel.set('position', { x: 750, y: 300 });
 cells.push(normalLevel);
 
-var plateletTransfusion = shapes.action.clone();
+var plateletTransfusion = shapes.treatment.clone();
 changeText(plateletTransfusion, "Platelet transfusion");
-plateletTransfusion.set('position', { x: 40 ,y: 500 });
+plateletTransfusion.set('position', { x: 50 ,y: 500 });
 cells.push(plateletTransfusion);
 
-var freshTransfusion = shapes.action.clone();
+var freshTransfusion = shapes.treatment.clone();
 changeText(freshTransfusion, "Fresh frozen plasma transfusion");
-freshTransfusion.set('position', { x: 285 ,y: 500 });
+freshTransfusion.set('position', { x: 300 ,y: 500 });
 cells.push(freshTransfusion);
+
+var cryoTransfusion = shapes.treatment.clone();
+changeText(cryoTransfusion, "Cryoprecipitate transfusion");
+cryoTransfusion.set('position', { x: 490 ,y: 500 });
+cells.push(cryoTransfusion);
+
+var protamine = shapes.treatment.clone();
+changeText(protamine, "Protamine");
+protamine.set('position', { x: 615 ,y: 500 });
+cells.push(protamine);
+
+var surgicalExploration = shapes.treatment.clone();
+changeText(surgicalExploration, "Surgical re-exploration of chest");
+surgicalExploration.set('position', { x: 740 ,y: 500 });
+cells.push(surgicalExploration);
 
 var links = [];
 links.push(createLink(step1, action1));
