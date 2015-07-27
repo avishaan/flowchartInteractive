@@ -74,7 +74,13 @@ shapes.action = new joint.shapes.basic.Rect({
 //link(wage, amount);
 //link(wage, date);
 //
+
+var changeText = function(elm, text){
+  elm.attributes.attrs.text.text = text;
+};
+
 var step1 = shapes.entrance.clone();
-step1.attributes.attrs.text.text = "other text";
+changeText(step1, "Excessive microvascular bleeding in surgical field");
+//step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
 
 graph.addCells([step1, shapes.action]);
