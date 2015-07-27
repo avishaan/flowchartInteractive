@@ -63,7 +63,7 @@ shapes.decision = new joint.shapes.basic.Path({
   position: { x: 200, y: 130 },
   size: { width: 100, height: 100 },
   attrs: {
-    path: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black', d: 'M 30 0 L 60 30 30 60 0 30 z' },
+    path: { fill: '#477A6F', rx: 0, ry: 0, 'stroke-width': 2, stroke: 'black', d: 'M 30 0 L 60 30 30 60 0 30 z' },
     text: {
       text: 'my label', fill: '#D8DAF3', 'font-size': 10, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize', 'ref-y': 0.45
     }
