@@ -23,6 +23,19 @@ var link = function(elm1, elm2) {
   return myLink;
 };
 
+var shapes = {};
+
+shapes.entrance = new joint.shapes.basic.Rect({
+  position: { x: 100, y: 30 },
+  size: { width: 300, height: 50 },
+  attrs: {
+    rect: { fill: '#2C3E50', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    text: {
+      text: 'my label', fill: '#3498DB', 'font-size': 10, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+    }
+  }
+});
+
 var employee = element(erd.Entity, 100, 200, "Employee");
 var salesman = element(erd.Entity, 100, 400, "Salesman");
 var wage = element(erd.WeakEntity, 530, 200, "Wage");
@@ -49,3 +62,5 @@ link(car, plate);
 link(wage, paid).cardinality('N');
 link(wage, amount);
 link(wage, date);
+
+graph.addCell(shapes.entrance);
