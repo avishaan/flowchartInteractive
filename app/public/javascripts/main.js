@@ -111,18 +111,23 @@ var changeText = function(elm, text){
   });
 };
 
+
 var step1 = shapes.entrance.clone();
 changeText(step1, "Excessive microvascular bleeding in surgical field");
 //step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
+step1.set('position', { x: 200 ,y: 30 });
 
 var action1 = shapes.action.clone();
 changeText(action1, "Order coagulation and platelet tests");
+action1.set('position', { x: 200 ,y: 135 });
 
 var pltLevel = shapes.decision.clone();
 changeText(pltLevel, "PLT <102 k/mm^3");
+pltLevel.set('position', { x: 14 ,y: 240 });
 
 var tegLevel = shapes.decision.clone();
 changeText(tegLevel, "TEG MA <48mm");
+tegLevel.set('position', { x:150, y: 240 });
 
 var links = [];
 links.push(createLink(step1, action1));
