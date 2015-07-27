@@ -205,6 +205,14 @@ links.push(createLink(action1, fibrogenLevel));
 links.push(createLink(action1, actLevel));
 links.push(createLink(action1, normalLevel));
 
+links.push(createLink(pltLevel, plateletTransfusion));
+links.push(createLink(tegLevel, plateletTransfusion));
+links.push(createLink(ptLevel, freshTransfusion));
+links.push(createLink(aPPTLevel, freshTransfusion));
+links.push(createLink(fibrogenLevel, cryoTransfusion));
+links.push(createLink(actLevel, protamine));
+links.push(createLink(normalLevel, surgicalExploration));
+
 //var link = new joint.dia.Link({
 //  source: { id: step1.id },
 //  target: { id: action1.id }
