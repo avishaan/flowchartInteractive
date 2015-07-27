@@ -92,7 +92,12 @@ var changeText = function(elm, text){
   text = joint.util.breakText(text, {
     width: elm.attributes.size.width
   });
-  elm.attributes.attrs.text.text = text;
+  //elm.attributes.attrs.text.text = text;
+  elm.attr({
+    'text': {
+      'text': text
+    }
+  });
 };
 
 var step1 = shapes.entrance.clone();
