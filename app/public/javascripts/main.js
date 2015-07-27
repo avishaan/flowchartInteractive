@@ -73,5 +73,8 @@ shapes.action = new joint.shapes.basic.Rect({
 //link(wage, paid).cardinality('N');
 //link(wage, amount);
 //link(wage, date);
+//
+var step1 = shapes.entrance.clone();
+step1.attributes.attrs.text.text = "other text";
 
-graph.addCells([shapes.entrance, shapes.action]);
+graph.addCells([step1, shapes.action]);
