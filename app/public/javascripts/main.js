@@ -126,37 +126,37 @@ cells.push(action1);
 
 var pltLevel = shapes.decision.clone();
 changeText(pltLevel, "PLT <102 k/mm^3");
-pltLevel.set('position', { x: 0 ,y: 240 });
+pltLevel.set('position', { x: 0 ,y: 300 });
 cells.push(pltLevel);
 
 var tegLevel = shapes.decision.clone();
 changeText(tegLevel, "TEG MA <48mm");
-tegLevel.set('position', { x: 125, y: 240 });
+tegLevel.set('position', { x: 125, y: 300 });
 cells.push(tegLevel);
 
 var ptLevel = shapes.decision.clone();
 changeText(ptLevel, "PT >16.6 (1.6) sec");
-ptLevel.set('position', { x: 250, y: 240 });
+ptLevel.set('position', { x: 250, y: 300 });
 cells.push(ptLevel);
 
 var aPPTLevel = shapes.decision.clone();
 changeText(aPPTLevel, "aPPT >57 sec");
-aPPTLevel.set('position', { x: 375, y: 240 });
+aPPTLevel.set('position', { x: 375, y: 300 });
 cells.push(aPPTLevel);
 
 var fibrogenLevel = shapes.decision.clone();
 changeText(fibrogenLevel, "Fibrinogen <140 mg/dL");
-fibrogenLevel.set('position', { x: 500, y: 240 });
+fibrogenLevel.set('position', { x: 500, y: 300 });
 cells.push(fibrogenLevel);
 
 var actLevel = shapes.decision.clone();
 changeText(actLevel, "ACT > Baseline");
-actLevel.set('position', { x: 625, y: 240 });
+actLevel.set('position', { x: 625, y: 300 });
 cells.push(actLevel);
 
 var normalLevel = shapes.decision.clone();
 changeText(normalLevel, "All normal");
-normalLevel.set('position', { x: 750, y: 240 });
+normalLevel.set('position', { x: 750, y: 300 });
 cells.push(normalLevel);
 
 var links = [];
