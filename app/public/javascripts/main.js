@@ -27,7 +27,7 @@ var shapes = {};
 
 shapes.entrance = new joint.shapes.basic.Rect({
   position: { x: 100, y: 30 },
-  size: { width: 300, height: 50 },
+  size: { width: 200, height: 50 },
   attrs: {
     rect: { fill: '#2C3E50', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
     text: {
@@ -36,31 +36,42 @@ shapes.entrance = new joint.shapes.basic.Rect({
   }
 });
 
-var employee = element(erd.Entity, 100, 200, "Employee");
-var salesman = element(erd.Entity, 100, 400, "Salesman");
-var wage = element(erd.WeakEntity, 530, 200, "Wage");
-var paid = element(erd.IdentifyingRelationship, 350, 190, "gets paid");
-var isa = element(erd.ISA, 125, 300, "ISA");
-var number = element(erd.Key, 0, 90, "number");
-var nameEl = element(erd.Normal, 75, 30, "name");
-var skills = element(erd.Multivalued, 150, 90, "skills");
-var amount = element(erd.Derived, 440, 80, "amount");
-var date = element(erd.Normal, 590, 80, "date");
-var plate = element(erd.Key, 405, 500, "plate");
-var car = element(erd.Entity, 430, 400, "Company car");
-var uses = element(erd.Relationship, 300, 390, "uses");
+shapes.action = new joint.shapes.basic.Rect({
+  position: { x: 200, y: 130 },
+  size: { width: 200, height: 50 },
+  attrs: {
+    rect: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
+    text: {
+      text: 'my label', fill: '#D8DAF3', 'font-size': 10, 'font-weight': 'bold', 'font-variant': 'small-caps', 'text-transform': 'capitalize'
+    }
+  }
+});
 
-link(employee, paid).cardinality('1');
-link(employee, number);
-link(employee, nameEl);
-link(employee, skills);
-link(employee, isa);
-link(isa, salesman);
-link(salesman, uses).cardinality('0..1');;
-link(car, uses).cardinality('1..1');
-link(car, plate);
-link(wage, paid).cardinality('N');
-link(wage, amount);
-link(wage, date);
+//var employee = element(erd.Entity, 100, 200, "Employee");
+//var salesman = element(erd.Entity, 100, 400, "Salesman");
+//var wage = element(erd.WeakEntity, 530, 200, "Wage");
+//var paid = element(erd.IdentifyingRelationship, 350, 190, "gets paid");
+//var isa = element(erd.ISA, 125, 300, "ISA");
+//var number = element(erd.Key, 0, 90, "number");
+//var nameEl = element(erd.Normal, 75, 30, "name");
+//var skills = element(erd.Multivalued, 150, 90, "skills");
+//var amount = element(erd.Derived, 440, 80, "amount");
+//var date = element(erd.Normal, 590, 80, "date");
+//var plate = element(erd.Key, 405, 500, "plate");
+//var car = element(erd.Entity, 430, 400, "Company car");
+//var uses = element(erd.Relationship, 300, 390, "uses");
+//
+//link(employee, paid).cardinality('1');
+//link(employee, number);
+//link(employee, nameEl);
+//link(employee, skills);
+//link(employee, isa);
+//link(isa, salesman);
+//link(salesman, uses).cardinality('0..1');;
+//link(car, uses).cardinality('1..1');
+//link(car, plate);
+//link(wage, paid).cardinality('N');
+//link(wage, amount);
+//link(wage, date);
 
-graph.addCell(shapes.entrance);
+graph.addCells([shapes.entrance, shapes.action]);
