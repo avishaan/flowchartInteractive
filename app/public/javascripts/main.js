@@ -76,6 +76,10 @@ shapes.action = new joint.shapes.basic.Rect({
 //
 
 var changeText = function(elm, text){
+  // break text for the element
+  text = joint.util.breakText(text, {
+    width: elm.attributes.size.width
+  });
   elm.attributes.attrs.text.text = text;
 };
 
