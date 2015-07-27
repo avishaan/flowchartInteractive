@@ -39,7 +39,7 @@ var shapes = {};
 
 shapes.entrance = new joint.shapes.basic.Rect({
   position: { x: 100, y: 30 },
-  size: { width: 200, height: 50 },
+  size: { width: 150, height: 50 },
   attrs: {
     rect: { fill: '#2C3E50', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
     text: {
@@ -50,7 +50,7 @@ shapes.entrance = new joint.shapes.basic.Rect({
 
 shapes.action = new joint.shapes.basic.Rect({
   position: { x: 200, y: 130 },
-  size: { width: 200, height: 50 },
+  size: { width: 150, height: 50 },
   attrs: {
     rect: { fill: '#4750E4', rx: 5, ry: 5, 'stroke-width': 2, stroke: 'black' },
     text: {
@@ -116,12 +116,12 @@ var cells = [];
 var step1 = shapes.entrance.clone();
 changeText(step1, "Excessive microvascular bleeding in surgical field");
 //step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
-step1.set('position', { x: 200 ,y: 30 });
+step1.set('position', { x: 300 ,y: 30 });
 cells.push(step1);
 
 var action1 = shapes.action.clone();
 changeText(action1, "Order coagulation and platelet tests");
-action1.set('position', { x: 200 ,y: 135 });
+action1.set('position', { x: 300 ,y: 135 });
 cells.push(action1);
 
 var pltLevel = shapes.decision.clone();
@@ -158,6 +158,16 @@ var normalLevel = shapes.decision.clone();
 changeText(normalLevel, "All normal");
 normalLevel.set('position', { x: 750, y: 300 });
 cells.push(normalLevel);
+
+var plateletTransfusion = shapes.action.clone();
+changeText(plateletTransfusion, "Platelet transfusion");
+plateletTransfusion.set('position', { x: 40 ,y: 500 });
+cells.push(plateletTransfusion);
+
+var freshTransfusion = shapes.action.clone();
+changeText(freshTransfusion, "Fresh frozen plasma transfusion");
+freshTransfusion.set('position', { x: 285 ,y: 500 });
+cells.push(freshTransfusion);
 
 var links = [];
 links.push(createLink(step1, action1));
