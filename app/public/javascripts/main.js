@@ -131,13 +131,33 @@ cells.push(pltLevel);
 
 var tegLevel = shapes.decision.clone();
 changeText(tegLevel, "TEG MA <48mm");
-tegLevel.set('position', { x:125, y: 240 });
+tegLevel.set('position', { x: 125, y: 240 });
 cells.push(tegLevel);
 
 var ptLevel = shapes.decision.clone();
-changeText(ptLevel, "TEG MA <48mm");
-ptLevel.set('position', { x:125, y: 240 });
+changeText(ptLevel, "PT >16.6 (1.6) sec");
+ptLevel.set('position', { x: 250, y: 240 });
 cells.push(ptLevel);
+
+var aPPTLevel = shapes.decision.clone();
+changeText(aPPTLevel, "aPPT >57 sec");
+aPPTLevel.set('position', { x: 375, y: 240 });
+cells.push(aPPTLevel);
+
+var fibrogenLevel = shapes.decision.clone();
+changeText(fibrogenLevel, "Fibrinogen <140 mg/dL");
+fibrogenLevel.set('position', { x: 500, y: 240 });
+cells.push(fibrogenLevel);
+
+var actLevel = shapes.decision.clone();
+changeText(actLevel, "ACT > Baseline");
+actLevel.set('position', { x: 625, y: 240 });
+cells.push(actLevel);
+
+var normalLevel = shapes.decision.clone();
+changeText(normalLevel, "All normal");
+normalLevel.set('position', { x: 750, y: 240 });
+cells.push(normalLevel);
 
 var links = [];
 links.push(createLink(step1, action1));
