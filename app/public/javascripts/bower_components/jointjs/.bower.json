@@ -28,6 +28,5 @@
   },
   "_source": "git://github.com/clientIO/joint.git",
   "_target": "~0.9.4",
-  "_originalSource": "jointjs",
-  "_direct": true
+  "_originalSource": "jointjs"
 }
