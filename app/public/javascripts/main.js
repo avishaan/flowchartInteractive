@@ -28,6 +28,10 @@ var createLink = function(fromElm, toElm) {
     source: { id: fromElm.id },
     target: { id: toElm.id }
   });
+  // set link props
+  link.attr({
+    '.marker-target': { fill: 'black', d: 'M 10 0 L 0 5 L 10 10 z' }
+  });
   return link;
 };
 
