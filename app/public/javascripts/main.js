@@ -2,7 +2,7 @@ var graph = new joint.dia.Graph;
 
 var paper = new joint.dia.Paper({
   el: $('#myholder'),
-  width: 800,
+  width: 1000,
   height: 900,
   model: graph,
   interactive: true,
@@ -161,6 +161,14 @@ cells.push(normalLevel);
 
 var links = [];
 links.push(createLink(step1, action1));
+links.push(createLink(action1, pltLevel));
+links.push(createLink(action1, tegLevel));
+links.push(createLink(action1, ptLevel));
+links.push(createLink(action1, aPPTLevel));
+links.push(createLink(action1, fibrogenLevel));
+links.push(createLink(action1, actLevel));
+links.push(createLink(action1, normalLevel));
+
 //var link = new joint.dia.Link({
 //  source: { id: step1.id },
 //  target: { id: action1.id }
