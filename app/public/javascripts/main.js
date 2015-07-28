@@ -155,10 +155,10 @@ changeText(aPTTLevel, "aPTT >57 sec");
 aPTTLevel.set('position', { x: 375, y: 300 });
 cells.push(aPTTLevel);
 
-var fibrogenLevel = shapes.decision.clone();
-changeText(fibrogenLevel, "Fibrinogen <140 mg/dL");
-fibrogenLevel.set('position', { x: 500, y: 300 });
-cells.push(fibrogenLevel);
+var fibrinogenLevel = shapes.decision.clone();
+changeText(fibrinogenLevel, "Fibrinogen <140 mg/dL");
+fibrinogenLevel.set('position', { x: 500, y: 300 });
+cells.push(fibrinogenLevel);
 
 var actLevel = shapes.decision.clone();
 changeText(actLevel, "ACT > Baseline");
@@ -200,16 +200,16 @@ links.push(createLink(step1, action1));
 links.push(createLink(action1, pltLevel));
 links.push(createLink(action1, tegLevel));
 links.push(createLink(action1, ptLevel));
-links.push(createLink(action1, aPPTLevel));
-links.push(createLink(action1, fibrogenLevel));
+links.push(createLink(action1, aPTTLevel));
+links.push(createLink(action1, fibrinogenLevel));
 links.push(createLink(action1, actLevel));
 links.push(createLink(action1, normalLevel));
 
 links.push(createLink(pltLevel, plateletTransfusion));
 links.push(createLink(tegLevel, plateletTransfusion));
 links.push(createLink(ptLevel, freshTransfusion));
-links.push(createLink(aPPTLevel, freshTransfusion));
-links.push(createLink(fibrogenLevel, cryoTransfusion));
+links.push(createLink(aPTTLevel, freshTransfusion));
+links.push(createLink(fibrinogenLevel, cryoTransfusion));
 links.push(createLink(actLevel, protamine));
 links.push(createLink(normalLevel, surgicalExploration));
 
@@ -220,3 +220,45 @@ links.push(createLink(normalLevel, surgicalExploration));
 
 graph.addCells(cells);
 graph.addCells(links);
+
+getValues():
+
+highlightPath({
+  pltLevel: 100
+});
+
+function getValues () {
+  debugger;
+  $('#pltLevel');
+}
+
+function highlightPath (inputs) {
+  if (inputs.pltLevel < 102){
+    var connectedLinks = graph.getConnectedLinks(pltLevel, { deep: true });
+    // change color of connecting links
+    connectedLinks.forEach(function(link){
+      link.attr({
+        '.connection': { stroke: 'red' },
+        '.marker-target': { fill: 'red', d: 'M 10 0 L 0 5 L 10 10 z' }
+      });
+    });
+    // change color of decision block
+    pltLevel.attr({
+      path: {
+        stroke: 'red',
+        'stroke-width': 3
+      }
+    });
+    // change color of any connecting elements
+    var connectedElems = graph.getNeighbors(pltLevel);
+    connectedElems.forEach(function(element){
+      element.attr({
+        rect: {
+          stroke: 'red',
+          'stroke-width': 3
+        }
+      });
+    });
+  }
+}
+
