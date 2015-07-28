@@ -226,11 +226,6 @@ inputs.pltLevel = function() {
   return $('#pltLevel').val();
 };
 
-highlightPath({
-  pltLevel: inputs.pltLevel()
-});
-
-
 function highlightPath (inputs) {
   if (inputs.pltLevel < 102){
     var connectedLinks = graph.getConnectedLinks(pltLevel, { deep: true });
@@ -260,4 +255,12 @@ function highlightPath (inputs) {
     });
   }
 }
+
+// listen to changes on any of the fields
+$("#inputHolder").find("input").focusout(function(elem){
+  // everytime something changes, perform the calculation/highlighting
+  highlightPath({
+    pltLevel: inputs.pltLevel()
+  });
+});
 
