@@ -221,14 +221,15 @@ links.push(createLink(normalLevel, surgicalExploration));
 graph.addCells(cells);
 graph.addCells(links);
 
-highlightPath({
-  pltLevel: 100
-});
-
 var inputs = {};
 inputs.pltLevel = function() {
   return $('#pltLevel').val();
 };
+
+highlightPath({
+  pltLevel: inputs.pltLevel()
+});
+
 
 function highlightPath (inputs) {
   if (inputs.pltLevel < 102){
