@@ -150,10 +150,10 @@ changeText(ptLevel, "PT >16.6 (1.6) sec");
 ptLevel.set('position', { x: 250, y: 300 });
 cells.push(ptLevel);
 
-var aPPTLevel = shapes.decision.clone();
-changeText(aPPTLevel, "aPPT >57 sec");
-aPPTLevel.set('position', { x: 375, y: 300 });
-cells.push(aPPTLevel);
+var aPTTLevel = shapes.decision.clone();
+changeText(aPTTLevel, "aPTT >57 sec");
+aPTTLevel.set('position', { x: 375, y: 300 });
+cells.push(aPTTLevel);
 
 var fibrogenLevel = shapes.decision.clone();
 changeText(fibrogenLevel, "Fibrinogen <140 mg/dL");
