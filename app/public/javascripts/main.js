@@ -221,16 +221,14 @@ links.push(createLink(normalLevel, surgicalExploration));
 graph.addCells(cells);
 graph.addCells(links);
 
-getValues():
-
 highlightPath({
   pltLevel: 100
 });
 
-function getValues () {
-  debugger;
-  $('#pltLevel');
-}
+var inputs = {};
+inputs.pltLevel = function() {
+  return $('#pltLevel').val();
+};
 
 function highlightPath (inputs) {
   if (inputs.pltLevel < 102){
