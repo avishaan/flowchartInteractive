@@ -5,7 +5,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='javascripts/bower_components/jointjs/dist/joint.css' />
     <link rel='stylesheet' href='javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css' />
-    <link rel='stylesheet' href='javascripts/bower_components/bootstrap/dist/css/bootstrap.theme.min.css' />
+    <link rel='stylesheet' href='javascripts/bower_components/bootstrap/dist/css/bootstrap-theme.min.css' />
     <script src='javascripts/bower_components/jquery/jquery.js'></script>
     <script src='javascripts/bower_components/lodash/dist/lodash.js'></script>
     <script src='javascripts/bower_components/backbone/backbone.js'></script>
@@ -16,6 +16,44 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Platelet count">
+            <div class="input-group-addon">(k/mm^3)</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="TEG Maximum Amplitude">
+            <div class="input-group-addon">(mm)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Point of care Prothrombin time (PT)">
+            <div class="input-group-addon">(seconds)</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="sr-only" for="exampleInputAmount">Amount</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="exampleInputAmount" placeholder="Activated partial thromboplastin time (aPTT)">
+            <div class="input-group-addon">(mm)</div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="myholder"></div>
     <script src='javascripts/main.js'></script>
   </body>
