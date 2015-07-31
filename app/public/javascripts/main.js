@@ -227,6 +227,7 @@ inputs.pltLevel = function() {
 };
 
 function highlightPath (inputs) {
+  // first reset old paths
   if (inputs.pltLevel < 102){
     var connectedLinks = graph.getConnectedLinks(pltLevel, { deep: true });
     // change color of connecting links
@@ -263,4 +264,8 @@ $("#inputHolder").find("input").focusout(function(elem){
     pltLevel: inputs.pltLevel()
   });
 });
+
+function renderGraph (options) {
+
+}
 
