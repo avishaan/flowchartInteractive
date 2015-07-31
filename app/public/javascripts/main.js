@@ -1,8 +1,6 @@
-var graph = new TransfuseGraph({
-  el: '#myholder',
-});
-
 function TransfuseGraph (options) {
+  var private = "private";
+  this.public = "public"
   var graph = new joint.dia.Graph;
   var paper = new joint.dia.Paper({
     el: $(options.el),
@@ -183,49 +181,57 @@ function TransfuseGraph (options) {
   graph.addCells(cells);
   graph.addCells(links);
 
-  var inputs = {};
-  inputs.pltLevel = function() {
-    return $('#pltLevel').val();
-  };
+}
 
-  function highlightPath (inputs) {
-    // first reset old paths
-    if (inputs.pltLevel < 102){
-      var connectedLinks = graph.getConnectedLinks(pltLevel, { deep: true });
-      // change color of connecting links
-      connectedLinks.forEach(function(link){
-        link.attr({
-          '.connection': { stroke: 'red' },
-          '.marker-target': { fill: 'red', d: 'M 10 0 L 0 5 L 10 10 z' }
-        });
+TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
+  // first reset old paths
+  if (inputs.pltLevel < 102){
+    var connectedLinks = graph.getConnectedLinks(pltLevel, { deep: true });
+    // change color of connecting links
+    connectedLinks.forEach(function(link){
+      link.attr({
+        '.connection': { stroke: 'red' },
+        '.marker-target': { fill: 'red', d: 'M 10 0 L 0 5 L 10 10 z' }
       });
-      // change color of decision block
-      pltLevel.attr({
-        path: {
+    });
+    // change color of decision block
+    pltLevel.attr({
+      path: {
+        stroke: 'red',
+        'stroke-width': 3
+      }
+    });
+    // change color of any connecting elements
+    var connectedElems = graph.getNeighbors(pltLevel);
+    connectedElems.forEach(function(element){
+      element.attr({
+        rect: {
           stroke: 'red',
           'stroke-width': 3
         }
       });
-      // change color of any connecting elements
-      var connectedElems = graph.getNeighbors(pltLevel);
-      connectedElems.forEach(function(element){
-        element.attr({
-          rect: {
-            stroke: 'red',
-            'stroke-width': 3
-          }
-        });
-      });
-    }
-  }
-
-  // listen to changes on any of the fields
-  $("#inputHolder").find("input").focusout(function(elem){
-    // everytime something changes, perform the calculation/highlighting
-    highlightPath({
-      pltLevel: inputs.pltLevel()
     });
+  }
+};
+//TransfuseGraph.prototype.logger = function logger() {
+//  console.log(this.public);
+//};
+var graph = new TransfuseGraph({
+  el: '#myholder',
+});
+
+// get the inputs from the fields and put them into the correct var
+var inputs = {};
+inputs.pltLevel = function() {
+  return $('#pltLevel').val();
+};
+
+// listen to changes on any of the fields
+$("#inputHolder").find("input").focusout(function(elem){
+  // everytime something changes, perform the calculation/highlighting
+  highlightPath({
+    pltLevel: inputs.pltLevel()
   });
+});
 
-}
-
+graph.highlightPath(inputs);
