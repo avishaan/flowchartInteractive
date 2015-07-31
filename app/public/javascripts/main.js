@@ -69,34 +69,6 @@ shapes.decision = new joint.shapes.basic.Path({
   }
 });
 
-//var employee = element(erd.Entity, 100, 200, "Employee");
-//var salesman = element(erd.Entity, 100, 400, "Salesman");
-//var wage = element(erd.WeakEntity, 530, 200, "Wage");
-//var paid = element(erd.IdentifyingRelationship, 350, 190, "gets paid");
-//var isa = element(erd.ISA, 125, 300, "ISA");
-//var number = element(erd.Key, 0, 90, "number");
-//var nameEl = element(erd.Normal, 75, 30, "name");
-//var skills = element(erd.Multivalued, 150, 90, "skills");
-//var amount = element(erd.Derived, 440, 80, "amount");
-//var date = element(erd.Normal, 590, 80, "date");
-//var plate = element(erd.Key, 405, 500, "plate");
-//var car = element(erd.Entity, 430, 400, "Company car");
-//var uses = element(erd.Relationship, 300, 390, "uses");
-//
-//link(employee, paid).cardinality('1');
-//link(employee, number);
-//link(employee, nameEl);
-//link(employee, skills);
-//link(employee, isa);
-//link(isa, salesman);
-//link(salesman, uses).cardinality('0..1');;
-//link(car, uses).cardinality('1..1');
-//link(car, plate);
-//link(wage, paid).cardinality('N');
-//link(wage, amount);
-//link(wage, date);
-//
-
 var changeText = function(elm, text){
   // break text for the element
   text = joint.util.breakText(text, {
