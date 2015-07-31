@@ -11,18 +11,6 @@ var paper = new joint.dia.Paper({
 
 var erd = joint.shapes.erd;
 
-var element = function(elm, x, y, label) {
-  var cell = new elm({ position: { x: x, y: y }, attrs: { text: { text: label }}});
-  graph.addCell(cell);
-  return cell;
-};
-
-var link = function(elm1, elm2) {
-  var myLink = new erd.Line({ source: { id: elm1.id }, target: { id: elm2.id }});
-  graph.addCell(myLink);
-  return myLink;
-};
-
 var createLink = function(fromElm, toElm) {
   var link = new joint.dia.Link({
     source: { id: fromElm.id },
