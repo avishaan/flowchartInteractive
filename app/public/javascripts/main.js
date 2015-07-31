@@ -12,7 +12,7 @@ function TransfuseGraph (options) {
   });
   this.links = [];
   this.shapes = {};
-  var elements = [];
+  this.elements = [];
 
   var createLink = function(fromElm, toElm) {
     var link = new joint.dia.Link({
@@ -87,72 +87,72 @@ function TransfuseGraph (options) {
   changeText(step1, "Excessive microvascular bleeding in surgical field");
   //step1.attributes.attrs.text.text = "Excessive microvascular bleeding in surgical field";
   step1.set('position', { x: 300 ,y: 30 });
-  elements.push(step1);
+  this.elements.push(step1);
 
   var action1 = this.shapes.action.clone();
   changeText(action1, "Order coagulation and platelet tests");
   action1.set('position', { x: 300 ,y: 135 });
-  elements.push(action1);
+  this.elements.push(action1);
 
   this.pltLevel = this.shapes.decision.clone();
   changeText(this.pltLevel, "PLT <102 k/mm^3");
   this.pltLevel.set('position', { x: 0 ,y: 300 });
-  elements.push(this.pltLevel);
+  this.elements.push(this.pltLevel);
 
   var tegLevel = this.shapes.decision.clone();
   changeText(tegLevel, "TEG MA <48mm");
   tegLevel.set('position', { x: 125, y: 300 });
-  elements.push(tegLevel);
+  this.elements.push(tegLevel);
 
   var ptLevel = this.shapes.decision.clone();
   changeText(ptLevel, "PT >16.6 (1.6) sec");
   ptLevel.set('position', { x: 250, y: 300 });
-  elements.push(ptLevel);
+  this.elements.push(ptLevel);
 
   var aPTTLevel = this.shapes.decision.clone();
   changeText(aPTTLevel, "aPTT >57 sec");
   aPTTLevel.set('position', { x: 375, y: 300 });
-  elements.push(aPTTLevel);
+  this.elements.push(aPTTLevel);
 
   var fibrinogenLevel = this.shapes.decision.clone();
   changeText(fibrinogenLevel, "Fibrinogen <140 mg/dL");
   fibrinogenLevel.set('position', { x: 500, y: 300 });
-  elements.push(fibrinogenLevel);
+  this.elements.push(fibrinogenLevel);
 
   var actLevel = this.shapes.decision.clone();
   changeText(actLevel, "ACT > Baseline");
   actLevel.set('position', { x: 625, y: 300 });
-  elements.push(actLevel);
+  this.elements.push(actLevel);
 
   var normalLevel = this.shapes.decision.clone();
   changeText(normalLevel, "All normal");
   normalLevel.set('position', { x: 750, y: 300 });
-  elements.push(normalLevel);
+  this.elements.push(normalLevel);
 
   var plateletTransfusion = this.shapes.treatment.clone();
   changeText(plateletTransfusion, "Platelet transfusion");
   plateletTransfusion.set('position', { x: 50 ,y: 500 });
-  elements.push(plateletTransfusion);
+  this.elements.push(plateletTransfusion);
 
   var freshTransfusion = this.shapes.treatment.clone();
   changeText(freshTransfusion, "Fresh frozen plasma transfusion");
   freshTransfusion.set('position', { x: 300 ,y: 500 });
-  elements.push(freshTransfusion);
+  this.elements.push(freshTransfusion);
 
   var cryoTransfusion = this.shapes.treatment.clone();
   changeText(cryoTransfusion, "Cryoprecipitate transfusion");
   cryoTransfusion.set('position', { x: 490 ,y: 500 });
-  elements.push(cryoTransfusion);
+  this.elements.push(cryoTransfusion);
 
   var protamine = this.shapes.treatment.clone();
   changeText(protamine, "Protamine");
   protamine.set('position', { x: 615 ,y: 500 });
-  elements.push(protamine);
+  this.elements.push(protamine);
 
   var surgicalExploration = this.shapes.treatment.clone();
   changeText(surgicalExploration, "Surgical re-exploration of chest");
   surgicalExploration.set('position', { x: 740 ,y: 500 });
-  elements.push(surgicalExploration);
+  this.elements.push(surgicalExploration);
 
   this.links.push(createLink(step1, action1));
   this.links.push(createLink(action1, this.pltLevel));
@@ -176,24 +176,44 @@ function TransfuseGraph (options) {
   //  target: { id: action1.id }
   //});
 
-  this.graph.addCells(elements);
+  this.graph.addCells(this.elements);
   this.graph.addCells(this.links);
 
 }
 
-TransfuseGraph.prototype.resetPath = function resetPath () {
-  // reset all the pahts
+TransfuseGraph.prototype.resetHighlight = function resetPath () {
+  // reset all the links
   this.links.forEach(function(link){
     link.attr({
       '.connection': { stroke: 'black' },
       '.marker-target': { fill: 'black', d: 'M 10 0 L 0 5 L 10 10 z' }
     });
   });
+  this.elements.forEach(function(element){
+    // check if it is a path element vs regular rect element
+    if (element.attributes.attrs.path){
+      element.attr({
+        path: {
+          stroke: 'black',
+          'stroke-width': 1
+        }
+      });
+    } else {
+      element.attr({
+        rect: {
+          stroke: 'black',
+          'stroke-width': 1
+        }
+      });
+    }
+  });
+  // reset all the elements
+  //
 };
 
 TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
   // first reset old paths
-  this.resetPath();
+  this.resetHighlight();
   if (inputs.pltLevel < 102){
     var connectedLinks = this.graph.getConnectedLinks(this.pltLevel, { deep: true });
     // change color of connecting links
