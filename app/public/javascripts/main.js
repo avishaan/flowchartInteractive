@@ -212,10 +212,17 @@ TransfuseGraph.prototype.resetHighlight = function resetPath () {
 };
 
 TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
+  // path name to highlight
+  var path = '';
   // first reset old paths
   this.resetHighlight();
   if (inputs.pltLevel < 102){
-    var connectedLinks = this.graph.getConnectedLinks(this.pltLevel, { deep: true });
+    // highlight pltDecisionPath
+    path = 'pltLevel';
+  }
+  // make sure we have a path before highlighting, if we have no path, skip this
+  if (path) {
+    var connectedLinks = this.graph.getConnectedLinks(this[path], { deep: true });
     // change color of connecting links
     connectedLinks.forEach(function(link){
       link.attr({
@@ -224,14 +231,14 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
       });
     });
     // change color of decision block
-    this.pltLevel.attr({
+    this[path].attr({
       path: {
         stroke: 'red',
         'stroke-width': 3
       }
     });
     // change color of any connecting elements
-    var connectedElems = this.graph.getNeighbors(this.pltLevel);
+    var connectedElems = this.graph.getNeighbors(this[path]);
     connectedElems.forEach(function(element){
       element.attr({
         rect: {
