@@ -231,7 +231,7 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
   } else if (inputs.fibrinogenLevel < 140) {
     // highlight pltDecisionPath
     pathName = 'fibrinogenLevel';
-  } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrogenLevel) {
+  } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrinogenLevel) {
     // if everything is filled in but none of the above occured, then all is normal
     pathName = 'normalLevel';
   }
