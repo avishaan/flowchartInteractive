@@ -235,7 +235,7 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
     });
     // change color of decision block
     this[pathName].attr({
-      pathName: {
+      path: {
         stroke: 'red',
         'stroke-width': 3
       }
