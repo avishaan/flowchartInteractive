@@ -99,10 +99,10 @@ function TransfuseGraph (options) {
   this.pltLevel.set('position', { x: 0 ,y: 300 });
   this.elements.push(this.pltLevel);
 
-  var tegLevel = this.shapes.decision.clone();
-  changeText(tegLevel, "TEG MA <48mm");
-  tegLevel.set('position', { x: 125, y: 300 });
-  this.elements.push(tegLevel);
+  this.tegLevel = this.shapes.decision.clone();
+  changeText(this.tegLevel, "TEG MA <48mm");
+  this.tegLevel.set('position', { x: 125, y: 300 });
+  this.elements.push(this.tegLevel);
 
   var ptLevel = this.shapes.decision.clone();
   changeText(ptLevel, "PT >16.6 (1.6) sec");
@@ -156,7 +156,7 @@ function TransfuseGraph (options) {
 
   this.links.push(createLink(step1, action1));
   this.links.push(createLink(action1, this.pltLevel));
-  this.links.push(createLink(action1, tegLevel));
+  this.links.push(createLink(action1, this.tegLevel));
   this.links.push(createLink(action1, ptLevel));
   this.links.push(createLink(action1, aPTTLevel));
   this.links.push(createLink(action1, fibrinogenLevel));
@@ -164,7 +164,7 @@ function TransfuseGraph (options) {
   this.links.push(createLink(action1, normalLevel));
 
   this.links.push(createLink(this.pltLevel, plateletTransfusion));
-  this.links.push(createLink(tegLevel, plateletTransfusion));
+  this.links.push(createLink(this.tegLevel, plateletTransfusion));
   this.links.push(createLink(ptLevel, freshTransfusion));
   this.links.push(createLink(aPTTLevel, freshTransfusion));
   this.links.push(createLink(fibrinogenLevel, cryoTransfusion));
@@ -213,16 +213,19 @@ TransfuseGraph.prototype.resetHighlight = function resetPath () {
 
 TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
   // path name to highlight
-  var path = '';
+  var pathName = '';
   // first reset old paths
   this.resetHighlight();
   if (inputs.pltLevel < 102){
     // highlight pltDecisionPath
-    path = 'pltLevel';
+    pathName = 'pltLevel';
+  } else if (inputs.tegLevel < 48) {
+    // highlight pltDecisionPath
+    pathName = 'tegLevel';
   }
   // make sure we have a path before highlighting, if we have no path, skip this
-  if (path) {
-    var connectedLinks = this.graph.getConnectedLinks(this[path], { deep: true });
+  if (pathName) {
+    var connectedLinks = this.graph.getConnectedLinks(this[pathName], { deep: true });
     // change color of connecting links
     connectedLinks.forEach(function(link){
       link.attr({
@@ -231,14 +234,14 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
       });
     });
     // change color of decision block
-    this[path].attr({
-      path: {
+    this[pathName].attr({
+      pathName: {
         stroke: 'red',
         'stroke-width': 3
       }
     });
     // change color of any connecting elements
-    var connectedElems = this.graph.getNeighbors(this[path]);
+    var connectedElems = this.graph.getNeighbors(this[pathName]);
     connectedElems.forEach(function(element){
       element.attr({
         rect: {
@@ -258,15 +261,31 @@ var graph = new TransfuseGraph({
 
 // get the inputs from the fields and put them into the correct var
 var inputs = {};
+inputs.getLevels = function() {
+  return {
+
+  };
+};
 inputs.pltLevel = function() {
-  return $('#pltLevel').val();
+  var level = $('#pltLevel').val();
+  if (level === "") {
+    // nothing set in level, set to undefined for the return
+    return undefined;
+  } else {
+    // otherwise return the number
+    return Number(level);
+  }
+};
+inputs.tegLevel = function() {
+  return $('#tegLevel').val();
 };
 
 // listen to changes on any of the fields
 $("#inputHolder").find("input").focusout(function(elem){
   // everytime something changes, perform the calculation/highlighting
   graph.highlightPath({
-    pltLevel: inputs.pltLevel()
+    pltLevel: inputs.pltLevel(),
+    tegLevel: inputs.tegLevel()
   });
 });
 
