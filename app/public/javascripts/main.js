@@ -263,7 +263,7 @@ var graph = new TransfuseGraph({
 var inputs = {
   get levels () {
     var levels = {};
-    var ids = ['pltLevel', 'tegLevel'];
+    var ids = ['pltLevel', 'tegLevel', 'ptLevel', 'aPTTLevel', 'fibrogenLevel', 'actLevel'];
     ids.forEach(function(id){
       // get the element
       var level = $('#'+id).val();
