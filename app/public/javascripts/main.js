@@ -278,20 +278,6 @@ inputs.getLevels = function() {
   return levels;
 };
 
-inputs.pltLevel = function() {
-  var level = $('#pltLevel').val();
-  if (level === "") {
-    // nothing set in level, set to undefined for the return
-    return undefined;
-  } else {
-    // otherwise return the number
-    return Number(level);
-  }
-};
-inputs.tegLevel = function() {
-  return $('#tegLevel').val();
-};
-
 // listen to changes on any of the fields
 $("#inputHolder").find("input").focusout(function(elem){
   // everytime something changes, perform the calculation/highlighting
