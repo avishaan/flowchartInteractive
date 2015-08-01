@@ -104,30 +104,30 @@ function TransfuseGraph (options) {
   this.tegLevel.set('position', { x: 125, y: 300 });
   this.elements.push(this.tegLevel);
 
-  var ptLevel = this.shapes.decision.clone();
-  changeText(ptLevel, "PT >16.6 (1.6) sec");
-  ptLevel.set('position', { x: 250, y: 300 });
-  this.elements.push(ptLevel);
+  this.ptLevel = this.shapes.decision.clone();
+  changeText(this.ptLevel, "PT >16.6 (1.6) sec");
+  this.ptLevel.set('position', { x: 250, y: 300 });
+  this.elements.push(this.ptLevel);
 
-  var aPTTLevel = this.shapes.decision.clone();
-  changeText(aPTTLevel, "aPTT >57 sec");
-  aPTTLevel.set('position', { x: 375, y: 300 });
-  this.elements.push(aPTTLevel);
+  this.aPTTLevel = this.shapes.decision.clone();
+  changeText(this.aPTTLevel, "aPTT >57 sec");
+  this.aPTTLevel.set('position', { x: 375, y: 300 });
+  this.elements.push(this.aPTTLevel);
 
-  var fibrinogenLevel = this.shapes.decision.clone();
-  changeText(fibrinogenLevel, "Fibrinogen <140 mg/dL");
-  fibrinogenLevel.set('position', { x: 500, y: 300 });
-  this.elements.push(fibrinogenLevel);
+  this.fibrinogenLevel = this.shapes.decision.clone();
+  changeText(this.fibrinogenLevel, "Fibrinogen <140 mg/dL");
+  this.fibrinogenLevel.set('position', { x: 500, y: 300 });
+  this.elements.push(this.fibrinogenLevel);
 
-  var actLevel = this.shapes.decision.clone();
-  changeText(actLevel, "ACT > Baseline");
-  actLevel.set('position', { x: 625, y: 300 });
-  this.elements.push(actLevel);
+  this.actLevel = this.shapes.decision.clone();
+  changeText(this.actLevel, "ACT > Baseline");
+  this.actLevel.set('position', { x: 625, y: 300 });
+  this.elements.push(this.actLevel);
 
-  var normalLevel = this.shapes.decision.clone();
-  changeText(normalLevel, "All normal");
-  normalLevel.set('position', { x: 750, y: 300 });
-  this.elements.push(normalLevel);
+  this.normalLevel = this.shapes.decision.clone();
+  changeText(this.normalLevel, "All normal");
+  this.normalLevel.set('position', { x: 750, y: 300 });
+  this.elements.push(this.normalLevel);
 
   var plateletTransfusion = this.shapes.treatment.clone();
   changeText(plateletTransfusion, "Platelet transfusion");
@@ -157,19 +157,19 @@ function TransfuseGraph (options) {
   this.links.push(createLink(step1, action1));
   this.links.push(createLink(action1, this.pltLevel));
   this.links.push(createLink(action1, this.tegLevel));
-  this.links.push(createLink(action1, ptLevel));
-  this.links.push(createLink(action1, aPTTLevel));
-  this.links.push(createLink(action1, fibrinogenLevel));
-  this.links.push(createLink(action1, actLevel));
-  this.links.push(createLink(action1, normalLevel));
+  this.links.push(createLink(action1, this.ptLevel));
+  this.links.push(createLink(action1, this.aPTTLevel));
+  this.links.push(createLink(action1, this.fibrinogenLevel));
+  this.links.push(createLink(action1, this.actLevel));
+  this.links.push(createLink(action1, this.normalLevel));
 
   this.links.push(createLink(this.pltLevel, plateletTransfusion));
   this.links.push(createLink(this.tegLevel, plateletTransfusion));
-  this.links.push(createLink(ptLevel, freshTransfusion));
-  this.links.push(createLink(aPTTLevel, freshTransfusion));
-  this.links.push(createLink(fibrinogenLevel, cryoTransfusion));
-  this.links.push(createLink(actLevel, protamine));
-  this.links.push(createLink(normalLevel, surgicalExploration));
+  this.links.push(createLink(this.ptLevel, freshTransfusion));
+  this.links.push(createLink(this.aPTTLevel, freshTransfusion));
+  this.links.push(createLink(this.fibrinogenLevel, cryoTransfusion));
+  this.links.push(createLink(this.actLevel, protamine));
+  this.links.push(createLink(this.normalLevel, surgicalExploration));
 
   //var link = new joint.dia.Link({
   //  source: { id: step1.id },
@@ -222,6 +222,19 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
   } else if (inputs.tegLevel < 48) {
     // highlight pltDecisionPath
     pathName = 'tegLevel';
+  } else if (inputs.ptLevel > 16.6) {
+    // highlight pltDecisionPath
+    pathName = 'ptLevel';
+  } else if (inputs.aPTTLevel > 57) {
+    // highlight pltDecisionPath
+    pathName = 'aPTTLevel';
+  } else if (inputs.fibrogenLevel < 140) {
+    debugger;
+    // highlight pltDecisionPath
+    pathName = 'fibrinogenLevel';
+  } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrogenLevel) {
+    // if everything is filled in but none of the above occured, then all is normal
+    pathName = 'normalLevel';
   }
   // make sure we have a path before highlighting, if we have no path, skip this
   if (pathName) {
@@ -263,7 +276,7 @@ var graph = new TransfuseGraph({
 var inputs = {
   get levels () {
     var levels = {};
-    var ids = ['pltLevel', 'tegLevel', 'ptLevel', 'aPTTLevel', 'fibrogenLevel', 'actLevel'];
+    var ids = ['pltLevel', 'tegLevel', 'ptLevel', 'aPTTLevel', 'fibrinogenLevel', 'actLevel'];
     ids.forEach(function(id){
       // get the element
       var level = $('#'+id).val();
