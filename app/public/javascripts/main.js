@@ -228,8 +228,7 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
   } else if (inputs.aPTTLevel > 57) {
     // highlight pltDecisionPath
     pathName = 'aPTTLevel';
-  } else if (inputs.fibrogenLevel < 140) {
-    debugger;
+  } else if (inputs.fibrinogenLevel < 140) {
     // highlight pltDecisionPath
     pathName = 'fibrinogenLevel';
   } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrogenLevel) {
