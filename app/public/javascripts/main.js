@@ -260,28 +260,29 @@ var graph = new TransfuseGraph({
 });
 
 // get the inputs from the fields and put them into the correct var
-var inputs = {};
-inputs.getLevels = function() {
-  var levels = {};
-  var ids = ['pltLevel', 'tegLevel'];
-  ids.forEach(function(id){
-    // get the element
-    var level = $('#'+id).val();
-    if (level === "") {
-      // nothing set in level, set to undefined for the return
-      levels[id] = undefined;
-    } else {
-      // otherwise return the number
-      levels[id] = Number(level);
-    }
-  });
-  return levels;
+var inputs = {
+  get levels () {
+    var levels = {};
+    var ids = ['pltLevel', 'tegLevel'];
+    ids.forEach(function(id){
+      // get the element
+      var level = $('#'+id).val();
+      if (level === "") {
+        // nothing set in level, set to undefined for the return
+        levels[id] = undefined;
+      } else {
+        // otherwise return the number
+        levels[id] = Number(level);
+      }
+    });
+    return levels;
+  }
 };
-
 // listen to changes on any of the fields
+//
 $("#inputHolder").find("input").focusout(function(elem){
   // everytime something changes, perform the calculation/highlighting
-  graph.highlightPath(inputs.getLevels());
+  graph.highlightPath(inputs.levels);
 });
 
 //graph.highlightPath(inputs);
