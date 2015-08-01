@@ -220,18 +220,16 @@ TransfuseGraph.prototype.highlightPath = function highlightPath (inputs) {
     // highlight pltDecisionPath
     pathName = 'pltLevel';
   } else if (inputs.tegLevel < 48) {
-    // highlight pltDecisionPath
     pathName = 'tegLevel';
   } else if (inputs.ptLevel > 16.6) {
-    // highlight pltDecisionPath
     pathName = 'ptLevel';
   } else if (inputs.aPTTLevel > 57) {
-    // highlight pltDecisionPath
     pathName = 'aPTTLevel';
   } else if (inputs.fibrinogenLevel < 140) {
-    // highlight pltDecisionPath
     pathName = 'fibrinogenLevel';
-  } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrinogenLevel) {
+  } else if (inputs.actLevel > inputs.baseLevel) {
+    pathName = 'actLevel';
+  } else if (inputs.pltLevel && inputs.tegLevel && inputs.ptLevel && inputs.aPTTLevel && inputs.fibrinogenLevel && inputs.actLevel && inputs.baseLevel) {
     // if everything is filled in but none of the above occured, then all is normal
     pathName = 'normalLevel';
   }
@@ -275,7 +273,7 @@ var graph = new TransfuseGraph({
 var inputs = {
   get levels () {
     var levels = {};
-    var ids = ['pltLevel', 'tegLevel', 'ptLevel', 'aPTTLevel', 'fibrinogenLevel', 'actLevel'];
+    var ids = ['pltLevel', 'tegLevel', 'ptLevel', 'aPTTLevel', 'fibrinogenLevel', 'actLevel', 'baseLevel'];
     ids.forEach(function(id){
       // get the element
       var level = $('#'+id).val();
